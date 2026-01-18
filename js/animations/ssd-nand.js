@@ -3,6 +3,7 @@
  * Era 4: 2000s-2010s - The Flash Revolution
  * 
  * Visualizes: Floating gate transistor with electrons tunneling
+ * v2: Added voltage indicator, status text, glowing electrons
  */
 
 export function initSSDNand(containerSelector) {
@@ -12,7 +13,7 @@ export function initSSDNand(containerSelector) {
   container.innerHTML = '';
   
   const width = 400;
-  const height = 280;
+  const height = 300;
   
   const svg = d3.select(container)
     .append('svg')
@@ -21,6 +22,21 @@ export function initSSDNand(containerSelector) {
     .style('width', '100%')
     .style('max-width', '400px');
   
+  // Define glow filter for electrons
+  const defs = svg.append('defs');
+  const glowFilter = defs.append('filter')
+    .attr('id', 'electron-glow')
+    .attr('x', '-100%')
+    .attr('y', '-100%')
+    .attr('width', '300%')
+    .attr('height', '300%');
+  glowFilter.append('feGaussianBlur')
+    .attr('stdDeviation', '2')
+    .attr('result', 'coloredBlur');
+  const feMerge = glowFilter.append('feMerge');
+  feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+  feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+  
   // Title
   svg.append('text')
     .attr('x', width / 2)
@@ -28,13 +44,13 @@ export function initSSDNand(containerSelector) {
     .attr('text-anchor', 'middle')
     .attr('fill', '#888')
     .attr('font-size', '12px')
-    .text('NAND Flash Cell (Floating Gate)');
+    .text('NAND Flash Cell (Floating Gate Transistor)');
   
-  // Gate structure
-  const gateX = 120;
-  const gateY = 80;
-  const gateWidth = 160;
-  const layerHeight = 25;
+  // Gate structure dimensions
+  const gateX = 100;
+  const gateY = 60;
+  const gateWidth = 140;
+  const layerHeight = 22;
   
   // Control gate (top)
   svg.append('rect')
@@ -48,23 +64,33 @@ export function initSSDNand(containerSelector) {
   
   svg.append('text')
     .attr('x', gateX + gateWidth + 10)
-    .attr('y', gateY + 17)
+    .attr('y', gateY + 15)
     .attr('fill', '#888')
-    .attr('font-size', '11px')
+    .attr('font-size', '10px')
     .text('Control Gate');
+  
+  // Voltage indicator
+  const voltageText = svg.append('text')
+    .attr('x', gateX - 10)
+    .attr('y', gateY + 15)
+    .attr('text-anchor', 'end')
+    .attr('fill', '#444')
+    .attr('font-size', '11px')
+    .attr('font-family', 'monospace')
+    .text('0V');
   
   // Oxide layer 1
   svg.append('rect')
     .attr('x', gateX)
     .attr('y', gateY + layerHeight)
     .attr('width', gateWidth)
-    .attr('height', 10)
+    .attr('height', 8)
     .attr('fill', '#2a4a6a');
   
   // Floating gate (where electrons are stored)
   const floatingGate = svg.append('rect')
     .attr('x', gateX)
-    .attr('y', gateY + layerHeight + 10)
+    .attr('y', gateY + layerHeight + 8)
     .attr('width', gateWidth)
     .attr('height', layerHeight)
     .attr('fill', '#1a3a5a')
@@ -73,86 +99,86 @@ export function initSSDNand(containerSelector) {
   
   svg.append('text')
     .attr('x', gateX + gateWidth + 10)
-    .attr('y', gateY + layerHeight + 25)
+    .attr('y', gateY + layerHeight + 22)
     .attr('fill', '#4ecdc4')
-    .attr('font-size', '11px')
+    .attr('font-size', '10px')
     .text('Floating Gate');
   
   // Oxide layer 2 (tunnel oxide)
-  svg.append('rect')
+  const tunnelOxide = svg.append('rect')
     .attr('x', gateX)
-    .attr('y', gateY + layerHeight * 2 + 10)
+    .attr('y', gateY + layerHeight * 2 + 8)
     .attr('width', gateWidth)
-    .attr('height', 10)
+    .attr('height', 8)
     .attr('fill', '#2a4a6a');
-    
+  
   svg.append('text')
     .attr('x', gateX + gateWidth + 10)
-    .attr('y', gateY + layerHeight * 2 + 18)
+    .attr('y', gateY + layerHeight * 2 + 15)
     .attr('fill', '#666')
-    .attr('font-size', '10px')
+    .attr('font-size', '9px')
     .text('Tunnel Oxide');
   
   // Silicon substrate
   svg.append('rect')
     .attr('x', gateX - 40)
-    .attr('y', gateY + layerHeight * 2 + 20)
+    .attr('y', gateY + layerHeight * 2 + 16)
     .attr('width', gateWidth + 80)
-    .attr('height', 50)
+    .attr('height', 45)
     .attr('fill', '#1a1a2e')
     .attr('stroke', '#333')
     .attr('stroke-width', 1);
   
   svg.append('text')
     .attr('x', width / 2)
-    .attr('y', gateY + layerHeight * 2 + 50)
+    .attr('y', gateY + layerHeight * 2 + 45)
     .attr('text-anchor', 'middle')
-    .attr('fill', '#666')
-    .attr('font-size', '11px')
-    .text('Silicon Substrate');
+    .attr('fill', '#555')
+    .attr('font-size', '10px')
+    .text('Silicon Channel');
   
   // Source and Drain regions
   svg.append('rect')
     .attr('x', gateX - 30)
-    .attr('y', gateY + layerHeight * 2 + 20)
-    .attr('width', 30)
-    .attr('height', 25)
+    .attr('y', gateY + layerHeight * 2 + 16)
+    .attr('width', 25)
+    .attr('height', 22)
     .attr('fill', '#ff6b6b')
     .attr('opacity', 0.7);
   
   svg.append('rect')
-    .attr('x', gateX + gateWidth)
-    .attr('y', gateY + layerHeight * 2 + 20)
-    .attr('width', 30)
-    .attr('height', 25)
+    .attr('x', gateX + gateWidth + 5)
+    .attr('y', gateY + layerHeight * 2 + 16)
+    .attr('width', 25)
+    .attr('height', 22)
     .attr('fill', '#ff6b6b')
     .attr('opacity', 0.7);
   
   svg.append('text')
-    .attr('x', gateX - 15)
-    .attr('y', gateY + layerHeight * 2 + 65)
+    .attr('x', gateX - 17)
+    .attr('y', gateY + layerHeight * 2 + 55)
     .attr('text-anchor', 'middle')
     .attr('fill', '#888')
-    .attr('font-size', '10px')
+    .attr('font-size', '9px')
     .text('Source');
   
   svg.append('text')
-    .attr('x', gateX + gateWidth + 15)
-    .attr('y', gateY + layerHeight * 2 + 65)
+    .attr('x', gateX + gateWidth + 17)
+    .attr('y', gateY + layerHeight * 2 + 55)
     .attr('text-anchor', 'middle')
     .attr('fill', '#888')
-    .attr('font-size', '10px')
+    .attr('font-size', '9px')
     .text('Drain');
   
   // Electrons (will animate into floating gate)
   const electrons = [];
   for (let i = 0; i < 8; i++) {
     electrons.push({
-      startX: gateX + 20 + (i % 4) * 40,
-      startY: gateY + layerHeight * 2 + 40,
-      endX: gateX + 30 + (i % 4) * 35,
-      endY: gateY + layerHeight + 18,
-      delay: i * 150
+      startX: gateX + 15 + (i % 4) * 35,
+      startY: gateY + layerHeight * 2 + 35,
+      endX: gateX + 20 + (i % 4) * 32,
+      endY: gateY + layerHeight + 17,
+      delay: i * 120
     });
   }
   
@@ -163,18 +189,38 @@ export function initSSDNand(containerSelector) {
     .attr('class', 'electron')
     .attr('cx', d => d.startX)
     .attr('cy', d => d.startY)
-    .attr('r', 5)
+    .attr('r', 4)
     .attr('fill', '#4ecdc4')
+    .attr('filter', 'url(#electron-glow)')
     .attr('opacity', 0);
   
-  // State indicator
-  const stateText = svg.append('text')
+  // Status text (large, prominent)
+  const statusText = svg.append('text')
     .attr('x', width / 2)
-    .attr('y', height - 20)
+    .attr('y', height - 35)
+    .attr('text-anchor', 'middle')
+    .attr('fill', '#666')
+    .attr('font-size', '13px')
+    .attr('font-weight', 'bold')
+    .text('IDLE');
+  
+  // Bit state indicator
+  const bitText = svg.append('text')
+    .attr('x', width / 2)
+    .attr('y', height - 15)
     .attr('text-anchor', 'middle')
     .attr('fill', '#888')
-    .attr('font-size', '12px')
-    .text('State: Empty (Bit = 1)');
+    .attr('font-size', '11px')
+    .attr('font-family', 'monospace')
+    .text('State: EMPTY → Bit = 1');
+  
+  // Access time
+  svg.append('text')
+    .attr('x', 30)
+    .attr('y', height - 15)
+    .attr('fill', '#555')
+    .attr('font-size', '10px')
+    .text('~25μs write');
   
   // Animation state
   let hasPlayed = false;
@@ -184,45 +230,107 @@ export function initSSDNand(containerSelector) {
       if (hasPlayed) return;
       hasPlayed = true;
       
-      // Fade in electrons
-      electronElements
-        .transition()
-        .delay(d => d.delay)
-        .duration(200)
-        .attr('opacity', 1);
+      // Phase 1: Apply voltage
+      statusText
+        .attr('fill', '#ff6b6b')
+        .text('APPLYING VOLTAGE...');
       
-      // Move electrons up through tunnel oxide (quantum tunneling!)
-      electronElements
+      voltageText
         .transition()
-        .delay(d => d.delay + 500)
-        .duration(800)
-        .ease(d3.easeCubicInOut)
-        .attr('cx', d => d.endX)
-        .attr('cy', d => d.endY);
+        .duration(500)
+        .attr('fill', '#ff6b6b')
+        .tween('text', function() {
+          const i = d3.interpolateNumber(0, 20);
+          return function(t) {
+            d3.select(this).text(`${Math.round(i(t))}V`);
+          };
+        });
       
-      // Change floating gate color
+      // Tunnel oxide glows
+      tunnelOxide
+        .transition()
+        .delay(500)
+        .duration(300)
+        .attr('fill', '#4a7a9a');
+      
+      // Phase 2: Show electrons
+      setTimeout(() => {
+        statusText.text('PROGRAMMING...');
+        
+        electronElements
+          .transition()
+          .delay(d => d.delay)
+          .duration(200)
+          .attr('opacity', 1)
+          .attr('r', 5);
+      }, 600);
+      
+      // Phase 3: Tunnel electrons
+      setTimeout(() => {
+        electronElements
+          .transition()
+          .delay(d => d.delay)
+          .duration(600)
+          .ease(d3.easeCubicInOut)
+          .attr('cx', d => d.endX)
+          .attr('cy', d => d.endY)
+          .attr('r', 4);
+      }, 1200);
+      
+      // Phase 4: Complete
       setTimeout(() => {
         floatingGate
           .transition()
-          .duration(500)
+          .duration(400)
           .attr('fill', '#2a5a7a');
         
-        stateText
+        statusText
+          .attr('fill', '#4ecdc4')
+          .text('✓ PROGRAMMED');
+        
+        bitText
+          .attr('fill', '#4ecdc4')
+          .text('State: CHARGED → Bit = 0');
+        
+        voltageText
           .transition()
           .duration(300)
-          .attr('fill', '#4ecdc4')
-          .text('State: Charged (Bit = 0)');
-      }, 2000);
+          .attr('fill', '#4ecdc4');
+        
+        // Electrons pulse
+        electronElements
+          .transition()
+          .duration(500)
+          .attr('r', 6)
+          .transition()
+          .duration(500)
+          .attr('r', 4)
+          .on('end', function pulse() {
+            d3.select(this)
+              .transition()
+              .duration(1000)
+              .attr('r', 5)
+              .transition()
+              .duration(1000)
+              .attr('r', 4)
+              .on('end', pulse);
+          });
+      }, 2500);
     },
     
     reset: function() {
       hasPlayed = false;
       electronElements
+        .interrupt()
         .attr('cx', d => d.startX)
         .attr('cy', d => d.startY)
-        .attr('opacity', 0);
+        .attr('opacity', 0)
+        .attr('r', 4);
       floatingGate.attr('fill', '#1a3a5a');
-      stateText.attr('fill', '#888').text('State: Empty (Bit = 1)');
+      tunnelOxide.attr('fill', '#2a4a6a');
+      statusText.attr('fill', '#666').text('IDLE');
+      bitText.attr('fill', '#888').text('State: EMPTY → Bit = 1');
+      voltageText.attr('fill', '#444').text('0V');
     }
   };
 }

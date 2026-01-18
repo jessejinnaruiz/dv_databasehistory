@@ -35,11 +35,36 @@
       </div>
     </header>
 
+    <!-- Progress Indicator -->
+    <nav class="progress-nav" aria-label="Timeline navigation">
+      <div class="progress-track"></div>
+      <a href="#era-punch" class="progress-dot" data-era="punch" title="1950s - Physical Age">
+        <span class="dot"></span>
+        <span class="label">1950s</span>
+      </a>
+      <a href="#era-tape" class="progress-dot" data-era="tape" title="1960s - Magnetic Age">
+        <span class="dot"></span>
+        <span class="label">1960s</span>
+      </a>
+      <a href="#era-hdd" class="progress-dot" data-era="hdd" title="1980s - Spinning Disk">
+        <span class="dot"></span>
+        <span class="label">1980s</span>
+      </a>
+      <a href="#era-ssd" class="progress-dot" data-era="ssd" title="2000s - Flash">
+        <span class="dot"></span>
+        <span class="label">2000s</span>
+      </a>
+      <a href="#era-cloud" class="progress-dot" data-era="cloud" title="2010s - Cloud">
+        <span class="dot"></span>
+        <span class="label">Now</span>
+      </a>
+    </nav>
+
     <!-- Main Scrollytelling Container -->
     <main class="scrolly-container">
       
       <!-- Era 1: Punch Cards (First/Oldest) -->
-      <section class="strata strata-punch" data-era="punch">
+      <section id="era-punch" class="strata strata-punch" data-era="punch">
         <div class="strata-content">
           <div class="visualization-container" id="viz-punch">
             <!-- D3 animation inserted here -->
@@ -47,7 +72,7 @@
           <aside class="library-metaphor">
             <span class="metaphor-icon">🗿</span>
             <p>
-              Stone tablets in a vault—permanent, tangible, one record per card
+              At the birth of computing, data storage was like stone tablets in a vault—permanent, tangible, one record per card
             </p>
           </aside>
         </div>
@@ -69,7 +94,7 @@
       </section>
 
       <!-- Era 2: Magnetic Tape -->
-      <section class="strata strata-tape" data-era="tape">
+      <section id="era-tape" class="strata strata-tape" data-era="tape">
         <div class="strata-content">
           <div class="visualization-container" id="viz-tape">
             <!-- D3 animation inserted here -->
@@ -77,8 +102,7 @@
           <aside class="library-metaphor">
             <span class="metaphor-icon">📜</span>
             <p>
-              Scrolls in a linear archive—must read from beginning to find your
-              record
+              In the 1960s with the invention of magnetic tape, data storage became like scrolls in a linear archive—must read from beginning to find your record
             </p>
           </aside>
         </div>
@@ -100,14 +124,14 @@
       </section>
 
       <!-- Era 3: HDD Platter -->
-      <section class="strata strata-hdd" data-era="hdd">
+      <section id="era-hdd" class="strata strata-hdd" data-era="hdd">
         <div class="strata-content">
           <div class="visualization-container" id="viz-hdd">
             <!-- D3 animation inserted here -->
           </div>
           <aside class="library-metaphor">
             <span class="metaphor-icon">🗃️</span>
-            <p>Card catalog system—indexed access to any record</p>
+            <p>With HDD data storage became like a card catalog system—indexed access to any record</p>
           </aside>
         </div>
         <div class="era-info">
@@ -128,14 +152,14 @@
       </section>
 
       <!-- Era 4: SSD/NAND -->
-      <section class="strata strata-ssd" data-era="ssd">
+      <section id="era-ssd" class="strata strata-ssd" data-era="ssd">
         <div class="strata-content">
           <div class="visualization-container" id="viz-ssd">
             <!-- D3 animation inserted here -->
           </div>
           <aside class="library-metaphor">
             <span class="metaphor-icon">⚡</span>
-            <p>Instant digital catalog—search and retrieve in microseconds</p>
+            <p>Next with flash storage, data storage became an instant digital catalog—search and retrieve in microseconds</p>
           </aside>
         </div>
         <div class="era-info">
@@ -156,7 +180,7 @@
       </section>
 
       <!-- Era 5: Cloud (Last/Present) -->
-      <section class="strata strata-cloud" data-era="cloud">
+      <section id="era-cloud" class="strata strata-cloud" data-era="cloud">
         <div class="strata-content">
           <div class="visualization-container" id="viz-cloud">
             <!-- D3 animation inserted here -->
@@ -164,8 +188,7 @@
           <aside class="library-metaphor">
             <span class="metaphor-icon">📚</span>
             <p>
-              Digital library that materializes books on demand, anywhere in the
-              world
+              Finally in the cloud era, data storage became like a digital library that materializes books on demand, anywhere in the world
             </p>
           </aside>
         </div>

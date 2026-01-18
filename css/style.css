@@ -385,3 +385,124 @@ body {
     transform: translateY(0);
   }
 }
+/* ========================================
+   PROGRESS INDICATOR
+   ======================================== */
+.progress-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Changed from flex-end */
+  gap: 16px;
+}
+
+.progress-track {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1px;
+}
+
+.progress-dot {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.progress-dot .dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-dot .label {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(5px);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-mono);
+  opacity: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.progress-dot:hover .label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.progress-dot:hover .dot {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
+}
+
+/* Active state - set by scrollama */
+.progress-dot.is-active .dot {
+  background: #4ecdc4;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+}
+
+.progress-dot.is-active .label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  color: #4ecdc4;
+}
+
+/* Era-specific active colors */
+.progress-dot[data-era="punch"].is-active .dot {
+  background: var(--punch-secondary);
+  border-color: var(--punch-secondary);
+  box-shadow: 0 0 10px rgba(210, 105, 30, 0.5);
+}
+
+.progress-dot[data-era="tape"].is-active .dot {
+  background: var(--tape-secondary);
+  border-color: var(--tape-secondary);
+  box-shadow: 0 0 10px rgba(112, 128, 144, 0.5);
+}
+
+.progress-dot[data-era="hdd"].is-active .dot {
+  background: var(--hdd-secondary);
+  border-color: var(--hdd-secondary);
+  box-shadow: 0 0 10px rgba(74, 74, 106, 0.5);
+}
+
+.progress-dot[data-era="ssd"].is-active .dot {
+  background: #4ecdc4;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+}
+
+.progress-dot[data-era="cloud"].is-active .dot {
+  background: var(--cloud-secondary);
+  border-color: var(--cloud-secondary);
+  box-shadow: 0 0 10px rgba(184, 212, 227, 0.5);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .progress-nav {
+    display: none;
+  }
+}

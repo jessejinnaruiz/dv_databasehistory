@@ -55,12 +55,31 @@ function handleStepEnter(response) {
   // Add active class for styling
   element.classList.add("is-active");
 
+  // Update progress indicator
+  updateProgressIndicator(era);
+
   // Play the animation for this era
   if (animations[era] && animations[era].play) {
     animations[era].play();
   }
 
   console.log(`Entered: ${era} (direction: ${direction})`);
+}
+
+/**
+ * Update the progress nav to show current era
+ */
+function updateProgressIndicator(activeEra) {
+  // Remove active from all dots
+  document.querySelectorAll('.progress-dot').forEach(dot => {
+    dot.classList.remove('is-active');
+  });
+  
+  // Add active to current era dot
+  const activeDot = document.querySelector(`.progress-dot[data-era="${activeEra}"]`);
+  if (activeDot) {
+    activeDot.classList.add('is-active');
+  }
 }
 
 /**
