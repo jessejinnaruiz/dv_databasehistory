@@ -1,0 +1,387 @@
+/* ========================================
+   DATABASE HISTORY - SCROLLYTELLING STYLES
+   ======================================== */
+
+/* CSS Custom Properties (Design Tokens) */
+:root {
+  /* Era Color Palettes */
+  --punch-primary: #8b4513;
+  --punch-secondary: #d2691e;
+  --punch-bg: #2d1810;
+
+  --tape-primary: #2f4f4f;
+  --tape-secondary: #708090;
+  --tape-bg: #1a2a2a;
+
+  --hdd-primary: #1a1a2e;
+  --hdd-secondary: #4a4a6a;
+  --hdd-bg: #0f0f1a;
+
+  --ssd-primary: #0f3460;
+  --ssd-secondary: #16213e;
+  --ssd-bg: #0a1628;
+
+  --cloud-primary: #e8f4f8;
+  --cloud-secondary: #b8d4e3;
+  --cloud-bg: #1a2d3d;
+
+  /* Typography */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Spacing */
+  --section-padding: 100vh;
+  --content-max-width: 1200px;
+
+  /* Transitions */
+  --transition-smooth: 0.3s ease-out;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Dark at top, blending to punch-bg at bottom to match first section */
+  background: linear-gradient(
+    180deg,
+    #0a0a0f 0%,
+    #0a0a0f 50%,
+    var(--punch-bg) 100%
+  );
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .subtitle {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 3rem;
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+  animation: bounce 2s infinite;
+}
+
+.arrow-down {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #666;
+  transform: rotate(45deg);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* ========================================
+   STRATA SECTIONS
+   ======================================== */
+.scrolly-container {
+  position: relative;
+}
+
+.strata {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  position: relative;
+  transition: background var(--transition-smooth);
+}
+
+/* Era-specific backgrounds
+   Each section: own color throughout, blending to NEXT section at bottom only.
+   The previous section's bottom already matches our top. */
+
+.strata-punch {
+  /* Punch brown throughout, blending to tape slate at bottom */
+  background: linear-gradient(
+    180deg,
+    var(--punch-bg) 0%,
+    var(--punch-bg) 80%,
+    var(--tape-bg) 100%
+  );
+}
+
+.strata-tape {
+  /* Tape slate throughout, blending to hdd navy at bottom */
+  background: linear-gradient(
+    180deg,
+    var(--tape-bg) 0%,
+    var(--tape-bg) 80%,
+    var(--hdd-bg) 100%
+  );
+}
+
+.strata-hdd {
+  /* HDD navy throughout, blending to ssd blue at bottom */
+  background: linear-gradient(
+    180deg,
+    var(--hdd-bg) 0%,
+    var(--hdd-bg) 80%,
+    var(--ssd-bg) 100%
+  );
+}
+
+.strata-ssd {
+  /* SSD blue throughout, blending to cloud teal at bottom */
+  background: linear-gradient(
+    180deg,
+    var(--ssd-bg) 0%,
+    var(--ssd-bg) 80%,
+    var(--cloud-bg) 100%
+  );
+}
+
+.strata-cloud {
+  /* Cloud teal throughout, blending to footer dark at bottom */
+  background: linear-gradient(
+    180deg,
+    var(--cloud-bg) 0%,
+    var(--cloud-bg) 80%,
+    #0a0a0f 100%
+  );
+}
+
+/* Strata Content Layout */
+.strata-content {
+  display: flex;
+  gap: 2rem;
+  max-width: var(--content-max-width);
+  margin: 0 auto 2rem;
+  width: 100%;
+}
+
+/* Visualization Container */
+.visualization-container {
+  flex: 1;
+  min-height: 400px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* SVG placeholder text */
+.visualization-container::before {
+  content: "Animation Loading...";
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem;
+}
+
+.visualization-container:has(svg)::before {
+  display: none;
+}
+
+/* ========================================
+   LIBRARY METAPHOR SIDEBAR
+   ======================================== */
+.library-metaphor {
+  width: 200px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metaphor-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.library-metaphor p {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+/* ========================================
+   ERA INFO
+   ======================================== */
+.era-info {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.era-years {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #888;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.era-info h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.era-description {
+  font-size: 1.1rem;
+  color: #bbb;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+}
+
+.physical-detail {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  max-width: 600px;
+}
+
+.physical-detail h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.physical-detail p {
+  font-size: 0.95rem;
+  color: #999;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  background: #0a0a0f;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #666;
+}
+
+.footer p {
+  margin-bottom: 0.5rem;
+}
+
+.footer .credits {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+  .strata-content {
+    flex-direction: column;
+  }
+
+  .library-metaphor {
+    width: 100%;
+    flex-direction: row;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .metaphor-icon {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+
+  .visualization-container {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .strata {
+    padding: 3rem 1rem;
+  }
+
+  .era-info h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ========================================
+   ANIMATION STATES
+   ======================================== */
+.strata.is-active .visualization-container {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.strata.is-active .era-info h2 {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

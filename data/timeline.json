@@ -1,0 +1,94 @@
+{
+  "title": "The Evolution of Data Storage",
+  "description": "A journey through the geological layers of computing history",
+  "eras": [
+    {
+      "id": "punch",
+      "name": "The Physical Age",
+      "years": "1950s – 1960s",
+      "colorPrimary": "#8B4513",
+      "colorSecondary": "#D2691E",
+      "technologies": [
+        "Punch Cards (IBM 80-column)",
+        "Paper Tape",
+        "Magnetic Drum Memory"
+      ],
+      "milestones": [
+        { "year": 1956, "event": "IBM 305 RAMAC - First commercial hard disk" }
+      ],
+      "libraryMetaphor": "Stone tablets in a vault—permanent, tangible, one record per card",
+      "physicalDetail": "80 columns, 12 rows. Light shines through holes to read bits. Drop the deck and lose your data order."
+    },
+    {
+      "id": "tape",
+      "name": "The Magnetic Age",
+      "years": "1960s – 1970s",
+      "colorPrimary": "#2F4F4F",
+      "colorSecondary": "#708090",
+      "technologies": [
+        "Magnetic Tape",
+        "IMS Hierarchical Database",
+        "CODASYL Network Model"
+      ],
+      "milestones": [
+        { "year": 1969, "event": "CODASYL network database specification" }
+      ],
+      "libraryMetaphor": "Scrolls in a linear archive—must read from beginning to find your record",
+      "physicalDetail": "Iron oxide coating on plastic tape. Hierarchical and network models emerge. Physical pointers = physical addresses."
+    },
+    {
+      "id": "hdd",
+      "name": "The Spinning Disk Era",
+      "years": "1980s – 2000s",
+      "colorPrimary": "#1a1a2e",
+      "colorSecondary": "#4a4a6a",
+      "technologies": [
+        "Hard Disk Drives",
+        "Relational Databases (Oracle, SQL Server)",
+        "RAID Arrays"
+      ],
+      "milestones": [
+        { "year": 1970, "event": "Codd's relational model paper" },
+        { "year": 1979, "event": "Oracle V2 - First commercial RDBMS" }
+      ],
+      "libraryMetaphor": "Card catalog system—indexed access to any record",
+      "physicalDetail": "Magnetic domains on aluminum platters. B-tree indexes enable SQL. RAID arrays provide redundancy."
+    },
+    {
+      "id": "ssd",
+      "name": "The Flash Revolution",
+      "years": "2000s – 2010s",
+      "colorPrimary": "#0f3460",
+      "colorSecondary": "#16213e",
+      "technologies": [
+        "Solid State Drives (NAND Flash)",
+        "NoSQL Databases",
+        "In-Memory Databases"
+      ],
+      "milestones": [
+        { "year": 2006, "event": "Hadoop/HDFS released" },
+        { "year": 2009, "event": "NoSQL movement begins" }
+      ],
+      "libraryMetaphor": "Instant digital catalog—search and retrieve in microseconds",
+      "physicalDetail": "NAND flash cells trap electrons in floating gates. 3D stacking puts terabytes in your pocket."
+    },
+    {
+      "id": "cloud",
+      "name": "The Cloud Era",
+      "years": "2010s – Present",
+      "colorPrimary": "#e8f4f8",
+      "colorSecondary": "#b8d4e3",
+      "technologies": [
+        "Object Storage (S3, Azure Blob)",
+        "Serverless Databases",
+        "Multi-Cloud, Edge Computing"
+      ],
+      "milestones": [
+        { "year": 2012, "event": "Cloud data warehouses emerge" },
+        { "year": 2020, "event": "Global edge computing <10ms" }
+      ],
+      "libraryMetaphor": "Digital library that materializes books on demand, anywhere in the world",
+      "physicalDetail": "Object stores chunk data across thousands of drives. Erasure coding provides durability. You never see the hardware."
+    }
+  ]
+}

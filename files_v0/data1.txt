@@ -1,0 +1,8 @@
+Era,Year,Technology,Key Innovation,Impact
+Early Databases,1960s,Hierarchical & Network Models,IBM's IMS,First structured data storage
+Relational Era,1970,Relational Model,Ted Codd's paper "A Relational Model of Data",Normalized data SQL foundation
+Commercial SQL,1979-1980s,Oracle DB2 Sybase,First commercial relational databases,Enterprise adoption
+SQL Standardization,1980s-1990s,SQL becomes standard,Rich indexing query optimization,Widespread business adoption
+Early NoSQL,1998,Strozzi NoSQL,Carlo Strozzi coins "NoSQL" term,Still relational but different approach
+Web 2.0 Era,2000s,Modern NoSQL,Web 2.0 scaling needs,Document Key-Value Column stores
+NoSQL Revival,2009,NoSQL re-emergence,Social media scaling challenges,Horizontal scaling solutions

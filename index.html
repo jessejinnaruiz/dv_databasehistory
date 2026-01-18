@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Evolution of Data Storage | A Visual Journey</title>
+    <meta
+      name="description"
+      content="An interactive scrollytelling visualization exploring how databases evolved from 1950s punch cards to modern cloud systems."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>The Evolution of Data Storage</h1>
+        <p class="subtitle">
+          Scroll down to journey forward through computing history
+        </p>
+        <div class="scroll-indicator">
+          <span>Begin Journey</span>
+          <div class="arrow-down"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Scrollytelling Container -->
+    <main class="scrolly-container">
+      
+      <!-- Era 1: Punch Cards (First/Oldest) -->
+      <section class="strata strata-punch" data-era="punch">
+        <div class="strata-content">
+          <div class="visualization-container" id="viz-punch">
+            <!-- D3 animation inserted here -->
+          </div>
+          <aside class="library-metaphor">
+            <span class="metaphor-icon">🗿</span>
+            <p>
+              Stone tablets in a vault—permanent, tangible, one record per card
+            </p>
+          </aside>
+        </div>
+        <div class="era-info">
+          <span class="era-years">1950s – 1960s</span>
+          <h2>The Physical Age</h2>
+          <p class="era-description">
+            Data you could hold. Binary encoded as holes punched through
+            cardboard. Sequential processing only.
+          </p>
+          <div class="physical-detail">
+            <h3>Physical Reality</h3>
+            <p>
+              80 columns, 12 rows. Light shines through holes to read bits. Drop
+              the deck and lose your data order.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Era 2: Magnetic Tape -->
+      <section class="strata strata-tape" data-era="tape">
+        <div class="strata-content">
+          <div class="visualization-container" id="viz-tape">
+            <!-- D3 animation inserted here -->
+          </div>
+          <aside class="library-metaphor">
+            <span class="metaphor-icon">📜</span>
+            <p>
+              Scrolls in a linear archive—must read from beginning to find your
+              record
+            </p>
+          </aside>
+        </div>
+        <div class="era-info">
+          <span class="era-years">1960s – 1970s</span>
+          <h2>The Magnetic Age</h2>
+          <p class="era-description">
+            Data encoded as magnetic particles on tape. Sequential access
+            only—rewind to start.
+          </p>
+          <div class="physical-detail">
+            <h3>Physical Reality</h3>
+            <p>
+              Iron oxide coating on plastic tape. Hierarchical and network
+              models emerge. Physical pointers = physical addresses.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Era 3: HDD Platter -->
+      <section class="strata strata-hdd" data-era="hdd">
+        <div class="strata-content">
+          <div class="visualization-container" id="viz-hdd">
+            <!-- D3 animation inserted here -->
+          </div>
+          <aside class="library-metaphor">
+            <span class="metaphor-icon">🗃️</span>
+            <p>Card catalog system—indexed access to any record</p>
+          </aside>
+        </div>
+        <div class="era-info">
+          <span class="era-years">1980s – 2000s</span>
+          <h2>The Spinning Disk Era</h2>
+          <p class="era-description">
+            The birth of random access. Read heads fly nanometers above platters
+            spinning at 7,200 RPM.
+          </p>
+          <div class="physical-detail">
+            <h3>Physical Reality</h3>
+            <p>
+              Magnetic domains on aluminum platters. B-tree indexes enable SQL.
+              RAID arrays provide redundancy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Era 4: SSD/NAND -->
+      <section class="strata strata-ssd" data-era="ssd">
+        <div class="strata-content">
+          <div class="visualization-container" id="viz-ssd">
+            <!-- D3 animation inserted here -->
+          </div>
+          <aside class="library-metaphor">
+            <span class="metaphor-icon">⚡</span>
+            <p>Instant digital catalog—search and retrieve in microseconds</p>
+          </aside>
+        </div>
+        <div class="era-info">
+          <span class="era-years">2000s – 2010s</span>
+          <h2>The Flash Revolution</h2>
+          <p class="era-description">
+            No moving parts. Data stored as trapped electrons in silicon. Speed
+            becomes the priority.
+          </p>
+          <div class="physical-detail">
+            <h3>Physical Reality</h3>
+            <p>
+              NAND flash cells trap electrons in floating gates. 3D stacking
+              puts terabytes in your pocket.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Era 5: Cloud (Last/Present) -->
+      <section class="strata strata-cloud" data-era="cloud">
+        <div class="strata-content">
+          <div class="visualization-container" id="viz-cloud">
+            <!-- D3 animation inserted here -->
+          </div>
+          <aside class="library-metaphor">
+            <span class="metaphor-icon">📚</span>
+            <p>
+              Digital library that materializes books on demand, anywhere in the
+              world
+            </p>
+          </aside>
+        </div>
+        <div class="era-info">
+          <span class="era-years">2010s – Present</span>
+          <h2>The Cloud Era</h2>
+          <p class="era-description">
+            Data becomes ethereal. It exists everywhere and nowhere—distributed
+            across the planet in milliseconds.
+          </p>
+          <div class="physical-detail">
+            <h3>Physical Reality</h3>
+            <p>
+              Object stores chunk data across thousands of drives. Erasure
+              coding provides durability. You never see the hardware.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>An educational visualization exploring the history of data storage</p>
+      <p class="credits">Built with D3.js and Scrollama</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/d3@7"></script>
+    <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
