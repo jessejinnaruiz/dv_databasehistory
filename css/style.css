@@ -94,7 +94,14 @@ body {
 .hero .subtitle {
   font-size: 1.1rem;
   color: #888;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero .author {
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 2.5rem;
 }
 
 .scroll-indicator {
@@ -322,6 +329,22 @@ body {
 
 .footer p {
   margin-bottom: 0.5rem;
+}
+
+.footer .author-bio {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.footer .author-bio a {
+  color: #4ecdc4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer .author-bio a:hover {
+  text-decoration: underline;
 }
 
 .footer .credits {
